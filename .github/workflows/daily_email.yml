@@ -1,0 +1,33 @@
+name: Daily Encouragement Email
+
+on:
+  schedule:
+    # הגדרת טריגר להרצה פעם ביום (לדוגמה, בכל יום ב-08:00 UTC)
+    - cron: '0 8 * * *'
+  workflow_dispatch:  # מאפשר להריץ ידנית במידת הצורך
+
+jobs:
+  send_email:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+      
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip
+          pip install openai
+
+      - name: Run daily email script
+        env:
+          SENDER_EMAIL: ${{ secrets.SENDER_EMAIL }}
+          SENDER_PASSWORD: ${{ secrets.SENDER_PASSWORD }}
+          RECIPIENT_EMAIL: ${{ secrets.RECIPIENT_EMAIL }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: |
+          python daily_encouragement.py
