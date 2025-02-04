@@ -2,9 +2,9 @@ name: Daily Encouragement Email
 
 on:
   schedule:
-    # הגדרת טריגר להרצה פעם ביום (לדוגמה, בכל יום ב-08:00 UTC)
-    - cron: '0 8 * * *'
-  workflow_dispatch:  # מאפשר להריץ ידנית במידת הצורך
+    - cron: '35 23 * * *'  # ריצה כל יום ב-23:35 UTC (01:35 בלילה שעון ישראל בחורף)
+  workflow_dispatch:       # אפשרות להרצה ידנית
+
 
 jobs:
   send_email:
