@@ -29,7 +29,8 @@ try:
     ai_content = response['choices'][0]['message']['content'].strip()
     print(ai_content)
 except Exception as e:
-    print(f"שגיאה בהתחברות ל-OpenAI: {e}")
+    ai_content = f"שגיאה בהתחברות ל-OpenAI: {e}"
+    print(ai_content)
 
 
 subject = "שיר עידוד יומי בנושא שאין עבודה"
