@@ -22,13 +22,10 @@ prompt = (
 )
 
 try:
-    # שימוש במודל החדש של OpenAI
+    # ✅ שימוש בממשק ChatCompletion החדש
     response = openai.ChatCompletion.create(
         model="gpt-3.5-turbo",
-        messages=[{"role": "user", "content": prompt}],
-        max_tokens=150,
-        temperature=0.7,
-        n=1
+        messages=[{"role": "user", "content": prompt}]
     )
     ai_content = response['choices'][0]['message']['content'].strip()
     print("תוכן מה-AI:")
@@ -53,8 +50,5 @@ try:
     server.sendmail(SENDER_EMAIL, RECIPIENT_EMAIL, msg.as_string())
     server.quit()
     print("מייל נשלח בהצלחה!")
-except smtplib.SMTPAuthenticationError as auth_error:
-    print("שגיאת אימות ב-Gmail: ודאי שהסיסמה היא סיסמת אפליקציה ולא הסיסמה הרגילה שלך.")
-    print(auth_error)
 except Exception as e:
-    print("שגיאה כללית בשליחת המייל:", e)
+    print("שגיאה בשליחת המייל:", e)
