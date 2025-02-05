@@ -22,12 +22,12 @@ prompt = (
 )
 
 try:
-    # ✅ שימוש בממשק ChatCompletion החדש
-    response = openai.ChatCompletion.create(
-        model="gpt-3.5-turbo",
-        messages=[{"role": "user", "content": prompt}]
-    )
-    ai_content = response['choices'][0]['message']['content'].strip()
+   response = openai.ChatCompletion.create(
+    model="gpt-3.5-turbo",
+    messages=[{"role": "user", "content": prompt}]
+)
+ai_content = response['choices'][0]['message']['content'].strip()
+
     print("תוכן מה-AI:")
     print(ai_content)
 except Exception as e:
